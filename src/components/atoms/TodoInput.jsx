@@ -1,18 +1,24 @@
-import React, { useState } from 'react';
+import { useState } from 'react'
 
-const Form = () => {
-  const [title, setTitle] = useState('');
+export const TodoInput = () => {
+  const [title, setTitle] = useState('')
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('タイトル:', title);
-    setTitle('');
-  };
+    e.preventDefault()
+    console.log('タイトル:', title)
+    setTitle('')
+  }
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-sm mx-auto p-4 bg-white shadow-md rounded-lg">
+    <form
+      onSubmit={handleSubmit}
+      className="max-w-sm mx-auto p-4 bg-white shadow-md rounded-lg"
+    >
       <div className="mb-4">
-        <label htmlFor="title" className="block text-gray-700 text-sm font-bold mb-2">
+        <label
+          htmlFor="title"
+          className="block text-gray-700 text-sm font-bold mb-2"
+        >
           タイトルを入力してください
         </label>
         <div className="flex items-center space-x-2">
@@ -32,7 +38,5 @@ const Form = () => {
         </div>
       </div>
     </form>
-  );
-};
-
-export default Form;
+  )
+}
