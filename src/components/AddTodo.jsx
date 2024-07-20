@@ -1,19 +1,13 @@
 import React, { useState } from 'react'
 import { TodoInput } from './TodoInput'
 
-export const AddTodo = () => {
+export const AddTodo = (props) => {
   // TODO: 後でatomsに移管する
-  const [title, setTitle] = useState('')
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log('タイトル:', title)
-    setTitle('')
-  }
+  const { addInputValue, handleAddTodo, onChangeAddInputValue } = props
 
   return (
     <form
-      onSubmit={handleSubmit}
+      onSubmit={handleAddTodo}
       className="max-w-sm mx-auto p-4 bg-white shadow-md rounded-lg"
     >
       <div className="mb-4">
@@ -27,8 +21,8 @@ export const AddTodo = () => {
           <input
             type="text"
             id="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            value={addInputValue}
+            onChange={(e) => onChangeAddInputValue(e.target.value)}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
           <button

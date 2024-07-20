@@ -13,8 +13,25 @@ export const Home = () => {
   /* TODO新規登録処理 */
   const handleAddTodo = (e) => {
     e.preventDefault()
-    console.log('タイトル:', title)
-    setTitle('')
+
+    // 入力値が空なら処理しない
+    if (addInputValue.trim() === '') return
+
+    // 登録するTODOを生成
+    const newTodo = {
+      id: uniqueId + 1,
+      title: addInputValue
+    }
+
+    // 一覧の末尾に追加
+    setTodoList([
+      ...todoList,
+      newTodo
+    ])
+
+    // uniqueIDをインクリメント
+    setUniqueId(uniqueId + 1)
+    setAddInputValue('')
   }
 
   /* TODO削除処理 */
@@ -28,13 +45,13 @@ export const Home = () => {
   }
 
   /* addInputValue(入力値)の変更処理 */
-  const onChangeAddInputValue = (e) => setAddInputValue(e.target.value)
+  const onChangeAddInputValue = (inputValue) => setAddInputValue(inputValue)
 
   return (
     <div className="min-h-screen items-center justify-center">
       {/* TODO新規追加フォーム */}
       <section>
-        <AddTodo addInputValue={addInputValue} handleAddTodo={handleAddTodo} />
+        <AddTodo addInputValue={addInputValue} handleAddTodo={handleAddTodo} onChangeAddInputValue={onChangeAddInputValue} />
       </section>
       {/* TODO一覧表示 */}
       <section className="mt-4">
