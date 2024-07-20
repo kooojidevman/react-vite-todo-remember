@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { TodoInput } from './TodoInput'
 
 export const AddTodo = (props) => {
   // TODO: 後でatomsに移管する
