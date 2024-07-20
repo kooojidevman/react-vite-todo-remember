@@ -1,9 +1,8 @@
-
-import { useMemo, useState } from 'react';
-import { AddTodo } from '../components/AddTodo';
-import { Todo } from '../components/Todo';
-import { INIT_TODO_LIST, INIT_UNIQUE_ID } from '../data/initialTodoData';
-import { SearchTodo } from '../components/SearchTodo';
+import { useMemo, useState } from 'react'
+import { AddTodo } from '../components/AddTodo'
+import { Todo } from '../components/Todo'
+import { INIT_TODO_LIST, INIT_UNIQUE_ID } from '../data/initialTodoData'
+import { SearchTodo } from '../components/SearchTodo'
 
 export const Home = () => {
   const [addInputValue, setAddInputValue] = useState('')
@@ -14,7 +13,7 @@ export const Home = () => {
   const showTodoList = useMemo(() => {
     return originTodoList.filter((todo) => {
       // 検索キーワードに前方一致するTODOだけを一覧表示させるための処理
-      const regexp = new RegExp("^" + searchInputValue, "i")
+      const regexp = new RegExp('^' + searchInputValue, 'i')
       return todo.title.match(regexp)
     })
   }, [originTodoList, searchInputValue])
@@ -30,14 +29,11 @@ export const Home = () => {
     // 登録するTODOを生成
     const newTodo = {
       id: uniqueId + 1,
-      title: addInputValue
+      title: addInputValue,
     }
 
     // 一覧の末尾に追加
-    setOriginTodoList([
-      ...originTodoList,
-      newTodo
-    ])
+    setOriginTodoList([...originTodoList, newTodo])
 
     // uniqueIDをインクリメント
     setUniqueId(uniqueId + 1)
@@ -58,17 +54,26 @@ export const Home = () => {
   const onChangeAddInputValue = (inputValue) => setAddInputValue(inputValue)
 
   /* searchInputValue(検索キーワード入力値)の変更検知 */
-  const onChangeSearchInputValue = (inputValue) => setSearchInputValue(inputValue)
+  const onChangeSearchInputValue = (inputValue) =>
+    setSearchInputValue(inputValue)
 
   return (
     <div className="min-h-screen items-center justify-center">
       {/* TODO新規追加フォーム */}
       <section>
-        <AddTodo addInputValue={addInputValue} handleAddTodo={handleAddTodo} onChangeAddInputValue={onChangeAddInputValue} />
+        <AddTodo
+          addInputValue={addInputValue}
+          handleAddTodo={handleAddTodo}
+          onChangeAddInputValue={onChangeAddInputValue}
+        />
       </section>
       {/* TODO検索フォーム */}
       <section>
-        <SearchTodo searchInputValue={searchInputValue} handleSearchTodo={handleSearchTodo} onChangeSearchInputValue={onChangeSearchInputValue} />
+        <SearchTodo
+          searchInputValue={searchInputValue}
+          handleSearchTodo={handleSearchTodo}
+          onChangeSearchInputValue={onChangeSearchInputValue}
+        />
       </section>
       {/* TODO一覧表示 */}
       <section className="mt-4">
